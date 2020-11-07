@@ -1,7 +1,5 @@
 package pl.coderslab.gov_app.councilman;
 
-import lombok.Generated;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +16,8 @@ public class Councilman {
     private String lastName;
     private String committee;
     private String description;
+    private String email;
+    private String password;
 
     public void setId(Long id) {
         this.id = id;
@@ -39,6 +39,14 @@ public class Councilman {
         this.description = description;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,5 +65,13 @@ public class Councilman {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
