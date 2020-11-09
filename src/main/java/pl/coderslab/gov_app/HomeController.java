@@ -45,8 +45,8 @@ public class HomeController {
 
 
 
-        return interpellationRepository.findByCouncilman(councilman);
-//               return interpellationRepository.findByCouncilmanId("1");
+        return interpellationRepository.findByCouncilman_Id(1L);
+
     }
 
 

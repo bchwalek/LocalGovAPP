@@ -1,0 +1,24 @@
+!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Student</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+</head>
+<body>
+<div th:include="components/header"></div>
+<div class="container">
+    <h1>Form</h1>
+    <!--  -->
+    <form action="#" th:action="@{insert}" th:object="${student}" method="post">
+        <p>Id: <input type="text" th:field="*{id}" /><span style="color: red;" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span></p>
+        <p>Name: <input type="text" th:field="*{name}" /><span style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></p>
+        <p>Course: <input type="text" th:field="*{course}" /><span style="color: red;" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></span></p>
+        <p>Email: <input type="text" th:field="*{email}" /><span style="color: red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></p>
+        <p>Birthdate: <input type="text" th:field="*{{birthdate}}"/><span style="color: red;" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></span></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</div>
+</body>
+</html>

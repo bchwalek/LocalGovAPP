@@ -9,10 +9,8 @@ import java.util.List;
 
 public interface InterpellationRepository extends JpaRepository<Interpellation, Long> {
 
-    List<Interpellation> findByCouncilman(Councilman councilman);
+    List<Interpellation> findByCouncilman_Id(Long id);
 
-//    @Query("SELECT i FROM Interpellation i WHERE i.councilman like ?1")
-//    List<Interpellation> findByCouncilmanId(String id);
 }
 
 

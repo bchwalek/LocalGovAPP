@@ -54,7 +54,7 @@ public class Interpellation {
         return formatDate.format(date);
     }
 
-    @OneToOne
+    @ManyToOne
     private Councilman councilman;
 
     public void setCouncilman(Councilman councilman) {
