@@ -12,7 +12,7 @@ public class Interpellation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    private String Title;
+    private String title;
     private String description;
     private String date;
 
@@ -21,7 +21,7 @@ public class Interpellation {
     }
 
     public void setTitle(String title) {
-        Title = title;
+        title = title;
     }
 
     public void setDescription(String description) {
@@ -37,7 +37,7 @@ public class Interpellation {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public String getDescription() {

@@ -1,9 +1,8 @@
 package pl.coderslab.gov_app.councilman;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.coderslab.gov_app.role.Role;
+
+import javax.persistence.*;
 
 @Entity
 public class Councilman {
@@ -15,6 +14,7 @@ public class Councilman {
     private String firstName;
     private String lastName;
     private String committee;
+    @Lob
     private String description;
     private String email;
     private String password;
@@ -73,5 +73,16 @@ public class Councilman {
 
     public String getPassword() {
         return password;
+    }
+
+    @OneToOne
+    Role role;
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

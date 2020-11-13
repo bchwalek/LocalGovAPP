@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+<h1>Lista radnych:</h1>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Imie</th>
+                    <th scope="col">Nazwisko</th>
+<!--                    <th scope="col">Handle</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="councilman: ${councilmans}">
+                    <th scope="row" th:text="${councilman.id}"></th>
+                    <td th:text="${councilman.firstName}"></td>
+                    <td th:text="${councilman.lastName}"></td>
+<!--                    <td>@mdo</td>-->
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>

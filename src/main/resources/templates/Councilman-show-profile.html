@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+            <section class="width-medium text-color-darker">
+                <div class="pb-2">
+                    <div class="border-dashed view-height w-100">
+                        <div class="mt-4 ml-4 mr-4">
+                            <div class="row border-bottom border-3">
+                                <div class="col"><h3 class="color-header text-uppercase"><td th:text="${councilman.getFirstName()}"/> <td th:text="${councilman.getLastName()}"/></h3></div>
+                                <div class="col d-flex justify-content-end mb-2"><a th:href="@{/showallcouncilman}" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
+                            </div>
+
+                            <table class="table borderless">
+                                <tbody>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Email</th>
+                                    <td class="col-7" th:text="${councilman.getEmail()}">
+
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Działalność</th>
+                                    <td class="col-7" th:text="${councilman.getDescription()}"></td>
+                                </tr>
+
+
+
+
+
+
+                                <!--                  od tego miejsca nie przerabiany formularz              -->
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Przygotowanie (minuty)</th>
+                                    <td class="col-7">
+                                        45
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row d-flex">
+                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Sposób przygotowania</h3></div>
+                                <div class="col-2"></div>
+                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Składniki</h3></div>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="col-5 p-4">
+                                    <p>Po tym czasie ziemniaki zalej śmietaną wymieszaną z Knorr Naturalnie smaczne, dodaj liście brukselki i dokładnie wymieszaj.</p>
+                                </div>
+                                <div class="col-2"></div>
+                                <ul class="col-5 p-4 list-unstyled">
+                                    <li>brukselka 300g</li>
+                                    <li>ziemniaki 500g</li>
+                                    <li>Fix Naturalnie makaronowa z szynką Knorr 1 szt.</li>
+                                    <li>średnia cebula 1szt.</li>
+                                    <li>ząbek czosnku 1szt.</li>
+                                    <li>kiełbasa np. śląska 500g</li>
+                                    <li>śmietana 18% 200 ml</li>
+                                    <li>Rama Smaż jak szef kuchni, wariant klasyczny 4 łyżki</li>
+                                    <li>gałązka tymianku 1 szt.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>

@@ -49,5 +49,10 @@ public class HomeController {
 
     }
 
+    @GetMapping("/start")
+    public String start2(){
+        return "Councilman-form-add";
+    }
+
 
 }
