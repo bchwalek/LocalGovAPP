@@ -7,19 +7,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Samorząd Terytorialny</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.standalone.min.css}"/>-->
     <link href="../static/css/simple-sidebar.css" rel="stylesheet" th:href="@{/css/simple-sidebar.css}"/>
-</head>
+
+
 <body>
 
 <div th:fragment="sidebar">
 <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">Start Bootstrap </div>
-    <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+    <div class="sidebar-heading"><a th:href="@{/}">Local GOV APP</a></div>
+    <div class="list-group list-group-flush pt-5">
+        <a th:href="@{/showallcouncilman}" class="list-group-item list-group-item-action bg-light">Radni</a>
+        <a th:href="@{/sessionadd}" class="list-group-item list-group-item-action bg-light">Porządek obrad</a>
+        <a th:href="@{/showinterpellation}" class="list-group-item list-group-item-action bg-light">Interpelacje</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
@@ -62,6 +65,10 @@
 <div th:fragment="jsscript">
 <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js/}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.bundle.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/webjars/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js}"></script>-->
+
+
+
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function(e) {
@@ -69,5 +76,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
+
 </div>
 </body>

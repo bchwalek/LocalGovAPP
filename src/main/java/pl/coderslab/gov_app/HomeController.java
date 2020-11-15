@@ -1,5 +1,6 @@
 package pl.coderslab.gov_app;
 
+import com.lowagie.text.DocumentException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import pl.coderslab.gov_app.interpellation.Interpellation;
 import pl.coderslab.gov_app.interpellation.InterpellationRepository;
 import pl.coderslab.gov_app.interpellation.InterpellationService;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -19,6 +21,7 @@ public class HomeController {
     private CouncilmanService councilmanService;
     private InterpellationService interpellationService;
     private InterpellationRepository interpellationRepository;
+    private PDFThymeleafExample pdfThymeleafExample;
 
     @GetMapping("/radny")
     @ResponseBody
@@ -50,8 +53,11 @@ public class HomeController {
     }
 
     @GetMapping("/start")
-    public String start2(){
-        return "Councilman-form-add";
+    public String start2() throws IOException, DocumentException {
+        PDFThymeleafExample thymeleaf2Pdf = new PDFThymeleafExample();
+        String html = thymeleaf2Pdf.parseThymeleafTemplate();
+        thymeleaf2Pdf.generatePdfFromHtml(html);
+        return "index";
     }
 
 

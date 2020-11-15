@@ -11,7 +11,7 @@ import pl.coderslab.gov_app.role.RoleService;
 
 @Controller
 @AllArgsConstructor
-public class CouncilamController {
+public class CouncilmanController {
 
     CouncilmanService councilmanService;
     RoleService roleService;
@@ -30,7 +30,7 @@ public class CouncilamController {
             return "Councilman-form-add";
         }
         councilmanService.addCoucilman(councilman);
-        return "Councilman-form-add";
+        return "redirect:/showallcouncilman";
     }
 
     @GetMapping("/showallcouncilman")

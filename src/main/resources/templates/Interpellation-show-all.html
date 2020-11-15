@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+
+
+            <div class="col noPadding">
+                <h1 class="color-header text-uppercase text-center">Lista złożonych interpelacji:</h1>
+            </div>
+            <div class="col d-flex justify-content-end mb-2 noPadding">
+                <a th:href="@{/addcouncilman}" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Utwórz profil</a>
+            </div>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Temat</th>
+                    <th scope="col">Treść</th>
+                    <th scope="col">Data złożenia</th>
+                    <th scope="col" class="text-center">Zgłaszający Radny</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="interpellation: ${allint}">
+                    <th scope="row" th:text="${interpellation.title}"></th>
+                    <td th:text="${interpellation.description}"></td>
+                    <td th:text="${interpellation.date}"></td>
+                    <td th:text="${interpellation.councilman.firstName}"></td>
+<!--                    <td class="row d-flex align-items-center justify-content-center flex-wrap">-->
+<!--                        <a th:href="@{/showcouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>-->
+<!--                        <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>-->
+<!--                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>-->
+<!--                    </td>-->
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>
