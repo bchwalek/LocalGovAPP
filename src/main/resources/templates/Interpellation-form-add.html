@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body><!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+            <form>
+                <div class="form-group">
+                    <label for="name">Tytuł</label>
+                    <input type="email" class="form-control" name="title" id="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Treść</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>
+
+
+</body>
+</html>

@@ -21,7 +21,7 @@ public class HomeController {
     private CouncilmanService councilmanService;
     private InterpellationService interpellationService;
     private InterpellationRepository interpellationRepository;
-    private PDFThymeleafExample pdfThymeleafExample;
+
 
     @GetMapping("/radny")
     @ResponseBody
@@ -53,11 +53,9 @@ public class HomeController {
     }
 
     @GetMapping("/start")
-    public String start2() throws IOException, DocumentException {
-        PDFThymeleafExample thymeleaf2Pdf = new PDFThymeleafExample();
-        String html = thymeleaf2Pdf.parseThymeleafTemplate();
-        thymeleaf2Pdf.generatePdfFromHtml(html);
-        return "index";
+    public String start2()  {
+
+        return "Interpellation-form-add";
     }
 
 

@@ -1,6 +1,8 @@
 package pl.coderslab.gov_app.sessionorder;
 
+import pl.coderslab.gov_app.legal.Legal;
 import pl.coderslab.gov_app.sessionelem.Sessionelem;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class SessionOrder {
     private String number;
     private String date;
     private String time;
+
 
     public Long getId() {
         return id;
@@ -64,6 +67,14 @@ public class SessionOrder {
         this.elems = elems;
     }
 
+    @OneToOne
+    private Legal legal;
 
+    public Legal getLegal() {
+        return legal;
+    }
 
+    public void setLegal(Legal legal) {
+        this.legal = legal;
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.gov_app.interpellation.InterpellationService;
 import pl.coderslab.gov_app.role.RoleService;
 
 @Controller
@@ -15,6 +16,7 @@ public class CouncilmanController {
 
     CouncilmanService councilmanService;
     RoleService roleService;
+    InterpellationService interpellationService;
 
 
     @GetMapping("/addcouncilman")
@@ -43,6 +45,7 @@ public class CouncilmanController {
     public String showcouncilman(@PathVariable Long id, Model model){
        Councilman councilman = councilmanService.getCouncilman(id).get();
        model.addAttribute("councilman", councilman);
+     model.addAttribute("CouncInterp", interpellationService.getInterpellationByCouncilId(id));
        return "Councilman-show-profile";
     }
 

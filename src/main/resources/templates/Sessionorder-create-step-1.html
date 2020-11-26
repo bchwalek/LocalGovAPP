@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+            <form th:object="${order}"  th:action="@{/sessionadd}" method="post">
+
+                <div class="form-group col-2 pl-0">
+                    <label for="number">Numer Sesji:</label>
+                    <input type="text" th:value="*{number}" class="form-control" id="number" name="number">
+                </div>
+
+                <select class="form-control" name="legal" >
+                    <option value="1">Sesja zwołana w trybie zwyczajnym</option>
+                    <option value="2">Sesja zwołana w trybie nadzwyczajnym</option>
+                </select>
+
+                <div class="row pt-5">
+                    <div class="col">
+                        <label>Wybierz date posiedzenia:</label><input type="date" th:value="*{date}" id="name" name="date">
+                    </div>
+                    <div class="col">
+                        <label>Wpisz godzinę rozpoczęcia:</label><input type="time" th:value="*{time}" id="time" name="time">
+                    </div>
+                </div>
+
+                <div class="pt-5 float-right">
+                    <input type="submit" name="submit" id="submit" value="Dalej"/>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>
+
+</body>
+</html>

@@ -62,7 +62,7 @@
 <!--                        <th scope="row" th:text="${councilman.id}"></th>-->
                         <td th:text="${element.name}"></td>
                         <td class="row d-flex align-items-center justify-content-center flex-wrap">
-                            <input type="submit" value="Dodaj nowy element"/>
+                            <input type="submit" th:field="*{elems.}" value="Dodaj nowy element"/>
                         </td>
                     </tr>
                     </tbody>
@@ -93,8 +93,8 @@
 
             <table>
                 <tbody>
-            <tr th:each="elem: ${tempdata}">
-                <th scope="row" th:text="${elem.name}"></th>
+            <tr th:each="elem: ${sessionElem}">
+                <th scope="row" th:text="${elem}"></th>
 
                 <td class="row d-flex align-items-center justify-content-center flex-wrap">
 

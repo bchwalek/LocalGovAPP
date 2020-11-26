@@ -22,7 +22,11 @@ public class SessionelemService {
         sessionelemRepository.save(sessionelem);
     }
 
-    public void updateCouncilman(Councilman councilman){
+    public Optional<Sessionelem> getElem(Long id){
+        return sessionelemRepository.findById(id);
+    }
 
+    public List<Sessionelem> getSessionElemByOrderID(Long id){
+       return sessionelemRepository.findBySessionOrderID(id);
     }
 }

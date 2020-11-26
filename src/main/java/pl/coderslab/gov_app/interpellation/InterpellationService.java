@@ -34,4 +34,8 @@ public class InterpellationService {
     public void updateInterpellation(Interpellation interpellation) {
     }
 
+    public List<Interpellation> getInterpellationByCouncilId(Long id){
+      return interpellationRepository.findByCouncilman_Id(id);
+    }
+
 }

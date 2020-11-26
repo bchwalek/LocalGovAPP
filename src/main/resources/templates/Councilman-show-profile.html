@@ -16,78 +16,64 @@
 
         <div th:replace="fragments :: navbar"></div>
 
-        <div class="container-lg pt-3">
-
-            <section class="width-medium text-color-darker">
-                <div class="pb-2">
-                    <div class="border-dashed view-height w-100">
-                        <div class="mt-4 ml-4 mr-4">
-                            <div class="row border-bottom border-3">
-                                <div class="col"><h3 class="color-header text-uppercase"><td th:text="${councilman.getFirstName()}"/> <td th:text="${councilman.getLastName()}"/></h3></div>
-                                <div class="col d-flex justify-content-end mb-2"><a th:href="@{/showallcouncilman}" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
-                            </div>
-
-                            <table class="table borderless">
-                                <tbody>
-                                <tr class="d-flex">
-                                    <th scope="row" class="col-2">Email</th>
-                                    <td class="col-7" th:text="${councilman.getEmail()}">
-
-                                    </td>
-                                </tr>
-                                <tr class="d-flex">
-                                    <th scope="row" class="col-2">Działalność</th>
-                                    <td class="col-7" th:text="${councilman.getDescription()}"></td>
-                                </tr>
 
 
-
-
-
-
-                                <!--                  od tego miejsca nie przerabiany formularz              -->
-                                <tr class="d-flex">
-                                    <th scope="row" class="col-2">Przygotowanie (minuty)</th>
-                                    <td class="col-7">
-                                        45
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <div class="row d-flex">
-                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Sposób przygotowania</h3></div>
-                                <div class="col-2"></div>
-                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Składniki</h3></div>
-                            </div>
-                            <div class="row d-flex">
-                                <div class="col-5 p-4">
-                                    <p>Po tym czasie ziemniaki zalej śmietaną wymieszaną z Knorr Naturalnie smaczne, dodaj liście brukselki i dokładnie wymieszaj.</p>
+            <div class="container-fluid">
+                            <form>
+                                <div class="row mt-5 align-items-center">
+                                    <div class="col-md-3 text-center mb-5">
+                                        <div class="avatar avatar-xl">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-7">
+                                                <h4 class="mb-1" th:text="|${councilman.getFirstName()} ${councilman.getLastName()}|"></h4>
+                                                <p class="small mb-3"><span class="badge badge-dark" th:text="${councilman.getEmail()}"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-md-7">
+                                                <p class="text-muted" th:text="${councilman.getDescription()}"></p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
+                                                <p class="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>
+                                                <p class="small mb-0 text-muted">(537) 315-1481</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-2"></div>
-                                <ul class="col-5 p-4 list-unstyled">
-                                    <li>brukselka 300g</li>
-                                    <li>ziemniaki 500g</li>
-                                    <li>Fix Naturalnie makaronowa z szynką Knorr 1 szt.</li>
-                                    <li>średnia cebula 1szt.</li>
-                                    <li>ząbek czosnku 1szt.</li>
-                                    <li>kiełbasa np. śląska 500g</li>
-                                    <li>śmietana 18% 200 ml</li>
-                                    <li>Rama Smaż jak szef kuchni, wariant klasyczny 4 łyżki</li>
-                                    <li>gałązka tymianku 1 szt.</li>
-                                </ul>
-                            </div>
+                                <div>
+                                <table class="table">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Temat</th>
+                                        <th scope="col">Treść</th>
+                                        <th scope="col">Data złożenia</th>
+                                        <th scope="col" class="text-center"><a th:href="@{addcouncilman}" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj Interpelację</a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="interpellation: ${CouncInterp}">
+                                        <th scope="row" th:text="${interpellation.title}"></th>
+                                        <td th:text="${interpellation.description}"></td>
+                                        <td th:text="${interpellation.date}"></td>
+                                        <td class="row d-flex align-items-center justify-content-center flex-wrap">
+                                            <a th:href="@{/interpellation/{id}/(id=${interpellation.getId()})}" class="btn btn-info rounded-0 text-light m-1">Generuj PDF</a>
+                                            <!--                        <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>-->
+                                            <!--                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>-->
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                                <a th:href="@{/showallcouncilman}" class="btn btn-info rounded text-light m-1">Powrót</a>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </section>
-
-    </div>
-        </div>
-    </div>
-</div>
-<!-- /#page-content-wrapper -->
-
 </div>
 
 <div th:replace="fragments :: jsscript"></div>

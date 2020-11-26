@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+            <div class="container-fluid text-center">
+                <h2 th:text="'Sesja nr '+ *{sessionOrder.number}"> </h2>
+            </div>
+
+            <div class="container-fluid text-center pt-lg-5">
+                <h3 th:text="|*{sessionOrder.legal.description} na dzień *{sessionOrder.date} o godzinie *{sessionOrder.time} w sali posiedzeń Urzędu Gminy w Chojnowie|"> </h3>
+            </div>
+
+            <div class="pt-lg-5">
+                <p class="font-weight-bold ">Proponowany porządek obrad:</p>
+                <dl th:each="elem, stat :${element}">
+                    <td th:text="|*{stat.index+1}. *{elem.name}|"></td>
+                </dl>
+            </div>
+        </div>
+        <div class="container">
+            <h3 class="pt-lg-5 text-center">[[${messageRes}]]</h3>
+        </div>
+        <div th:each="resolution: *{resolutions}" th:if="${not #lists.isEmpty(resolution)}" class="container align-bottom">
+
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+<!--                <td th:text="*{resolution.name}"></td>-->
+                <td th:text="*{resolution.resolutionName}"></td>
+                <td><a th:href="@{/downlad/{id}/(id=${resolution.getId()})}"><img th:src="@{/images/pdf.png}" width="35" th:text="|*{#numbers.formatInteger(resolution.size, 4, 'COMMA')} bytes|"/></a></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        </div>
+        <p class="text-center pt-lg-5 font-italic">Zapraszam!</p>
+    </div>
+
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>

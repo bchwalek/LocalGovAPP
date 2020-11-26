@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Samorząd Terytorialny</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.standalone.min.css}"/>-->
+    <link href="css/simple-sidebar.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<h3 th:text="'Interpelacja nr ' +${id}+'/'+${date}"></h3>
+<table class="border-dark">
+    <tbody class="">
+    <tr/> <th scope="row" class="text-center"/> Tytuł: <td th:text="${title}"/>
+    <tr/> <th scope="col" class="pb-5"/> Treść: <td th:text="${description}" class="pb-5"/>
+    <tr/> <th scope="col"/> Radny:  <td th:text="${councilmanFN} + ' ' + ${councilmanLN}"/>
+    <tr/> <th scope="col"/> Data złożenia: <td th:text="${date}"/>
+    </tbody>
+</table>
+
+</body>
+
+
+</html>

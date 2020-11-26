@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+            <form  th:action="@{/sessionadd2}" method="post">
+                <div class="form-group pt-lg-5">
+                    <label for="sessionelements">Wybierz elemety porządku obrad:</label>
+                    <div class="col d-flex justify-content-end noPadding">
+                        <a th:href="@{/sessionadd}" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj nowy element</a>
+                    </div>
+
+                    <table class="table" id="sessionelements">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Elementy porządku obrad</th>
+                            <th scope="col" class="text-center">Akcja</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="element: ${sessionElements}">
+                            <td th:text="${element.name}"></td>
+                            <td class="row d-flex align-items-center justify-content-center flex-wrap">
+                                <input type="hidden" name="sessionID" id="sessionID" th:value="*{sessionID}"/>
+                                <input type="submit" name="elementID" id="elementID" th:value="*{element.id}"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center small">
+                    Elementy porządku obrad będą dodawane w kolejności wyboru.
+                </div>
+                <div class="pt-5 float-right">
+                    <input type="submit" value="Dalej"/>
+                </div>
+            </form>
+
+
+            <div class="container align-content-center pt-lg-5">
+            <table>
+                <tbody>
+                <th scope="col">Wybrane:</th>
+                <tr th:each="elem: ${elem}">
+
+
+                    <td th:text="${elem.name}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>

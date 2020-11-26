@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @Component
-public class PDFThymeleafExample {
+public class PDFCreate {
 
 
-    public void generatePdfFromHtml(String html) throws IOException, DocumentException {
-        String outputFolder = System.getProperty("user.home") + File.separator + "thymeleaf.pdf";
+    public void generatePdfFromHtml(String html, String newName) throws IOException, DocumentException {
+        String outputFolder = System.getProperty("user.home") + File.separator + newName+".pdf";
         OutputStream outputStream = new FileOutputStream(outputFolder);
 
         ITextRenderer renderer = new ITextRenderer();
@@ -29,7 +29,7 @@ public class PDFThymeleafExample {
         outputStream.close();
     }
 
-    public String parseThymeleafTemplate() {
+    public String parseThymeleafTemplate(String name, Context context) {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/");
         templateResolver.setSuffix(".html");
@@ -39,9 +39,6 @@ public class PDFThymeleafExample {
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
 
-        Context context = new Context();
-        context.setVariable("to", "Baeldung.com");
-
-        return templateEngine.process("thymeleaf", context);
+        return templateEngine.process(name, context);
     }
 }
