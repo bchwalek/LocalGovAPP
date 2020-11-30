@@ -3,6 +3,10 @@ package pl.coderslab.gov_app.councilman;
 import pl.coderslab.gov_app.role.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Councilman {
@@ -10,13 +14,15 @@ public class Councilman {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "Imię nie może być puste")
     private String firstName;
     private String lastName;
     private String committee;
-    @Lob
+
     private String description;
     private String email;
+
+    @Size(min=2, max=10, message = "Hasło musi mieć conajmniej 2 i maksymalnie 10 znaków")
     private String password;
 
     public void setId(Long id) {

@@ -17,6 +17,7 @@ import pl.coderslab.gov_app.sessionelem.SessionelemService;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +49,7 @@ public class SessionOrderController {
 //Przejście do formularza z elementami porządku obrad, przesłanie elementów porządku obrad, i id rozpoczetej sesji
 
     @PostMapping("/sessionadd")
-    public String sessionAddStep2(Model model, SessionOrder sessionOrder, @ModelAttribute("legal")String leagl, BindingResult bindingResult){
+    public String sessionAddStep2(Model model, @Valid SessionOrder sessionOrder, @ModelAttribute("legal")String leagl, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "Sessionorder-create-step-1";

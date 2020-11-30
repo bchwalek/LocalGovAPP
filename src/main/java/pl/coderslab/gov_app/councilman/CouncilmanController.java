@@ -5,10 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.gov_app.interpellation.InterpellationService;
 import pl.coderslab.gov_app.role.RoleService;
+
+import javax.validation.Valid;
 
 @Controller
 @AllArgsConstructor
@@ -27,7 +30,7 @@ public class CouncilmanController {
         }
 
     @PostMapping("/addcouncilman")
-    public String addcoucilman(Councilman councilman, BindingResult bindingResult){
+    public String addcoucilman(@Valid Councilman councilman, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "Councilman-form-add";
         }
@@ -45,7 +48,7 @@ public class CouncilmanController {
     public String showcouncilman(@PathVariable Long id, Model model){
        Councilman councilman = councilmanService.getCouncilman(id).get();
        model.addAttribute("councilman", councilman);
-     model.addAttribute("CouncInterp", interpellationService.getInterpellationByCouncilId(id));
+       model.addAttribute("CouncInterp", interpellationService.getInterpellationByCouncilId(id));
        return "Councilman-show-profile";
     }
 

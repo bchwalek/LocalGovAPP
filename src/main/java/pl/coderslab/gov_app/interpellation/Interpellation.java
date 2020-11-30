@@ -11,24 +11,23 @@ public class Interpellation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
     private String title;
     private String description;
-    private String date;
+    private Date date;
 
     public void setId(Long id) {
         this.id = id;
     }
 
     public void setTitle(String title) {
-        title = title;
+        this.title = title;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -44,13 +43,13 @@ public class Interpellation {
         return description;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     public String date(){
         Date date = new Date();
-        SimpleDateFormat formatDate = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatDate = new SimpleDateFormat ("yyyy-MM-dd");
         return formatDate.format(date);
     }
 

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.context.Context;
 import pl.coderslab.gov_app.PDFCreate;
+import pl.coderslab.gov_app.councilman.CouncilmanService;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 public class InterpellationController {
 
         InterpellationService interpellationService;
+        CouncilmanService councilmanService;
         PDFCreate pdfCreate;
 
         @GetMapping("/showinterpellation")
@@ -51,14 +54,19 @@ public class InterpellationController {
     @GetMapping("/addinterpellation")
     public String addIntForm(Model model){
             model.addAttribute("interpellation", new Interpellation());
-            return "Interpellation-add-form";
+            return "Interpellation-form-add";
     }
 
-    @PostMapping("/addInterpellation")
+
+    @PostMapping("/addinterpellation")
     public String addInt(Interpellation interpellation, BindingResult bindingResult){
             if(bindingResult==null){
-                return "Interpellation-add-form";
+                return "Interpellation-form-add";
             }
+            interpellation.setCouncilman(councilmanService.getCouncilman(1L).get());
+            interpellation.setDate(new Date());
+            interpellationService.addInterpellation(interpellation);
+
 
 
 

@@ -39,10 +39,11 @@
 
                 <div class="row pt-5">
                     <div class="col">
-                        <label>Wybierz date posiedzenia:</label><input type="date" th:value="*{date}" id="name" name="date">
+                        <label>Wybierz date posiedzenia:</label><input type="date" th:field="*{date}" id="date" name="date">
+                        <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"><td>
                     </div>
                     <div class="col">
-                        <label>Wpisz godzinę rozpoczęcia:</label><input type="time" th:value="*{time}" id="time" name="time">
+                        <label>Wpisz godzinę rozpoczęcia:</label><input type="time" th:field="*{time}" id="time" name="time">
                     </div>
                 </div>
 

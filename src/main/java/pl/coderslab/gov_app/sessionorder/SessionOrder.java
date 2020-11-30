@@ -1,11 +1,15 @@
 package pl.coderslab.gov_app.sessionorder;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.NonNull;
 import pl.coderslab.gov_app.legal.Legal;
 import pl.coderslab.gov_app.sessionelem.Sessionelem;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +20,10 @@ public class SessionOrder {
     private Long id;
 
     private String number;
-    private String date;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Future(message = "Bad date!")
+    private Date date;
     private String time;
 
 
@@ -36,11 +43,11 @@ public class SessionOrder {
         this.number = number;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
