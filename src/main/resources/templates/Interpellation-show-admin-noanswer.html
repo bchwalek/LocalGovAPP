@@ -18,37 +18,36 @@
 
         <div class="container-lg pt-3">
 
+            <div class="container">
+                <h3 class="pt-lg-5 text-center">[[${intmessage}]]</h3>
+            </div>
 
 
-            <div class="col pt-lg-5">
+
+            <div class="col pt-lg-5" th:if="${!allint.isEmpty()}">
                 <h1 class="color-header text-uppercase text-center">Lista złożonych interpelacji:</h1>
             </div>
-            <div class="col d-flex justify-content-end mb-2 pt-lg-5">
-                <a th:href="@{/addinterpellation}" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj Interpelację</a>
-            </div>
-            <table class="table">
+
+            <table class="table pt-lg-5" th:if="${!allint.isEmpty()}">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Temat</th>
                     <th scope="col">Treść</th>
                     <th scope="col">Data złożenia</th>
                     <th scope="col" class="text-center">Zgłaszający Radny</th>
-                    <th scope="col" class="text-center">Odpowiedź</th>
                     <th scope="col" class="text-center"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="interpellation: ${allint}">
-                    <th scope="row" th:text="${interpellation.title}"></th>
-                    <td th:text="${interpellation.description}"></td>
-                    <td th:text="${#dates.format(interpellation.date, 'dd-MM-yyyy')}"></td>
-                    <td th:text="${interpellation.councilman.firstName} + ' ' + ${interpellation.councilman.lastName}"></td>
-                    <td th:text="${interpellation.answer}" th:if="${interpellation.answer!=null}"></td>
-                    <td th:text="|BRAK|" th:if="${interpellation.answer==null}"></td>
+                    <th scope="row" th:text="${interpellation.getKey().title}"></th>
+                    <td th:text="${interpellation.getKey().description}"></td>
+                    <td th:text="${#dates.format(interpellation.getKey().date, 'dd-MM-yyyy')}" th:if="${interpellation.getValue() != true}" style="color: red"></td>
+                    <td th:text="${#dates.format(interpellation.getKey().date, 'dd-MM-yyyy')}" th:if="${interpellation.getValue() == true}"></td>
+                    <td th:text="${interpellation.getKey().councilman.firstName} + ' ' + ${interpellation.getKey().councilman.lastName}"></td>
                     <td class="row d-flex align-items-center justify-content-center flex-wrap">
-                        <a th:href="@{/interpellation/{id}/(id=${interpellation.getId()})}" class="btn btn-info rounded-0 text-light m-1">Generuj PDF</a>
-<!--                        <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-warning rounded-0 text-light m-1">Odpowiedź</a>-->
-<!--                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>-->
+                        <a th:href="@{/interpellation/{id}/(id=${interpellation.getKey().getId()})}" class="btn btn-info rounded-0 text-light m-1">Generuj PDF</a>
+                        <a th:href="@{/intans/{id}/(id=${interpellation.getKey().getId()})}" class="btn btn-info rounded-0 text-light m-1">Dodaj Odpowiedź</a>
                     </td>
                 </tr>
                 </tbody>

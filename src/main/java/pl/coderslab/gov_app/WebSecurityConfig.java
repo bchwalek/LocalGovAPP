@@ -3,36 +3,47 @@ package pl.coderslab.gov_app;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.coderslab.gov_app.councilman.CouncilmanService;
+import pl.coderslab.gov_app.superadmin.SuperAdminService;
 
+@EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//     @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//
-//    }
     @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("radny")
-                .password("radny1")
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(userDetails);
+    public PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
+    private CouncilmanService councilmanService;
+//    private SuperAdminService superAdminService;
+
+    public WebSecurityConfig(CouncilmanService councilmanService) {
+        this.councilmanService = councilmanService;
+//        this.superAdminService = superAdminService;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(councilmanService);
+//        auth.userDetailsService(superAdminService);
+
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/radny").hasRole("ADMIN")
+        http
+                .csrf().disable()
+                .authorizeRequests()
+//                .antMatchers("/addinterpellation").hasRole("ADMIN")
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and().logout().logoutSuccessUrl("/");
     }
 }

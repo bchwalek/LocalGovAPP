@@ -20,15 +20,16 @@
 
 <div th:fragment="sidebar">
 <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading"><a th:href="@{/}">Local GOV APP</a></div>
+    <div class="sidebar-heading text-center" ><a th:href="@{/}">Local GOV APP</a></div>
+    <div class="sidebar-heading align-content-center"><img th:src="@{/images/gminachojn.jpeg}"/></div>
     <div class="list-group list-group-flush pt-5">
         <a th:href="@{/showallcouncilman}" class="list-group-item list-group-item-action bg-light">Radni</a>
-        <a th:href="@{/sessionadd}" class="list-group-item list-group-item-action bg-light">Porządek obrad</a>
+        <a th:href="@{/allorders}" class="list-group-item list-group-item-action bg-light">Porządki obrad</a>
         <a th:href="@{/showinterpellation}" class="list-group-item list-group-item-action bg-light">Interpelacje</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+    </div>
+    <div class="sidebar-heading" style="position: absolute; bottom: 1cm">
+        <a th:href="@{/login}" class="btn btn-light">Zaloguj</a>
+        <a th:href="@{/logout}" class="btn btn-light">Wyloguj</a>
     </div>
 </div>
 </div>
@@ -40,23 +41,28 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <div  th:text="|Gmina Chojnów - z nią zawsze po drodze!|" class="navbar pl-lg-5" style="font-family: cursive">
+<!--                <img th:src="@{/images/gmchojn.png}" style="width: 75px"/>-->
+
+            </div>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" th:href="@{/}">Strona Główna<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" th:href="@{https://www.gmina-chojnow.pl}">Gmina</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                            Panel administarcyjny
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" th:href="@{/addcouncilman}">Utwórz profil Radnego</a>
+                            <a class="dropdown-item" th:href="@{/admin/showallcouncilman}">Aktualizuj profil Radnego</a>
+                            <a class="dropdown-item" th:href="@{/sessionadd}">Utwórz porządek obrad</a>
+                            <a class="dropdown-item" th:href="@{/showint}">Interpelacje bez odpowiedzi</a>
                         </div>
                     </li>
                 </ul>

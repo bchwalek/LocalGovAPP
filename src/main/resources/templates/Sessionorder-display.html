@@ -23,7 +23,7 @@
             </div>
 
             <div class="container-fluid text-center pt-lg-5">
-                <h3 th:text="|*{sessionOrder.legal.description} na dzień *{sessionOrder.date} o godzinie *{sessionOrder.time} w sali posiedzeń Urzędu Gminy w Chojnowie|"> </h3>
+                <h3 th:text="|*{sessionOrder.legal.description} na dzień *{#dates.format(sessionOrder.date, 'dd-MM-yyyy')} o godzinie *{sessionOrder.time} w sali posiedzeń Urzędu Gminy w Chojnowie|"> </h3>
             </div>
 
             <div class="pt-lg-5">

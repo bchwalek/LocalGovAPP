@@ -1,6 +1,7 @@
 package pl.coderslab.gov_app.sessionorder;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -13,16 +14,11 @@ import pl.coderslab.gov_app.resolution.Resolution;
 import pl.coderslab.gov_app.resolution.ResolutionService;
 import pl.coderslab.gov_app.sessionelem.Sessionelem;
 import pl.coderslab.gov_app.sessionelem.SessionelemService;
-
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 
 @AllArgsConstructor
@@ -38,7 +34,7 @@ public class SessionOrderController {
 
 
 //Start formularza
-
+    @Secured("ROLE_ADMIN")
     @GetMapping("/sessionadd")
         public String sessionAddStep1(Model model){
         model.addAttribute("order", new SessionOrder());
@@ -47,7 +43,7 @@ public class SessionOrderController {
 
 //Odbiór z formularza I etap Porządku (nr, data, godzina);
 //Przejście do formularza z elementami porządku obrad, przesłanie elementów porządku obrad, i id rozpoczetej sesji
-
+    @Secured("ROLE_ADMIN")
     @PostMapping("/sessionadd")
     public String sessionAddStep2(Model model, @Valid SessionOrder sessionOrder, @ModelAttribute("legal")String leagl, BindingResult bindingResult){
 
@@ -69,7 +65,7 @@ public class SessionOrderController {
 
     //Odbiór z forumlarza krok 2
 
-
+    @Secured("ROLE_ADMIN")
     @PostMapping("/sessionadd2")
     public String sessionAddStep3(Model model,
                                   @ModelAttribute("sessionID") String sessionID,
@@ -97,6 +93,7 @@ public class SessionOrderController {
         return "Sessionorder-create-step-3";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/sessionadd2")
     public String sessionAddStep3(Model model,
                                   @ModelAttribute("elem") List<Sessionelem> sessionelems,
@@ -109,6 +106,7 @@ public class SessionOrderController {
         return "Sessionorder-create-step-2";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/upload")
     public String upolad (@RequestParam("document")MultipartFile multipartFile,
                           @RequestParam("resolutionName")String resolutionName,
@@ -135,6 +133,7 @@ public class SessionOrderController {
         return "redirect:/upload";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/upload")
     public  String upload(){
         return "Sessionorder-create-step-3";
@@ -174,8 +173,14 @@ public class SessionOrderController {
         ServletOutputStream servletOutputStream = response.getOutputStream();
         servletOutputStream.write(resolution.getContent());
         servletOutputStream.close();
+    }
 
-
+    @GetMapping("/allorders")
+    public String showAll(Model model){
+        List<SessionOrder> sessionOrders = sessionOrderService.getAllSessionOrder();
+        Collections.reverse(sessionOrders);
+        model.addAttribute("sessionsOrders", sessionOrders);
+        return "Sessionorder-show-all";
     }
 
 }

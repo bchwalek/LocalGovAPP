@@ -1,28 +1,35 @@
 package pl.coderslab.gov_app.councilman;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import pl.coderslab.gov_app.role.Role;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
-public class Councilman {
+public class Councilman implements UserDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Imię nie może być puste")
     private String firstName;
+
+    @NotBlank(message = "Imię nie może być puste")
     private String lastName;
     private String committee;
 
     private String description;
+
+    @Email
     private String email;
 
-    @Size(min=2, max=10, message = "Hasło musi mieć conajmniej 2 i maksymalnie 10 znaków")
+//    @Size(min=2, max=10, message = "Hasło musi mieć conajmniej 2 i maksymalnie 10 znaków")
     private String password;
 
     public void setId(Long id) {
@@ -77,8 +84,38 @@ public class Councilman {
         return email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @OneToOne

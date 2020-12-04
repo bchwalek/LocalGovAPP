@@ -1,15 +1,26 @@
 package pl.coderslab.gov_app.superadmin;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import pl.coderslab.gov_app.councilman.Councilman;
 import pl.coderslab.gov_app.councilman.CouncilmanRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
+@Service
+public class SuperAdminService implements UserDetailsService {
 
-public class SuperAdminService {
 
     private SuperAdminRepository superAdminRepository;
+
+    public SuperAdminService(SuperAdminRepository superAdminRepository) {
+        this.superAdminRepository = superAdminRepository;
+    }
 
     public List<SuperAdmin> getAllSuperAdmin(){
         return superAdminRepository.findAll();
@@ -29,5 +40,10 @@ public class SuperAdminService {
 
     public void updateCouncilman(SuperAdmin superAdmin) {
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return superAdminRepository.findByEmail(s);
     }
 }

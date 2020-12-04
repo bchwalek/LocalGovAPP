@@ -14,6 +14,20 @@ public class Interpellation {
     private String title;
     private String description;
     private Date date;
+    private String answer;
+    private Boolean isAnswer;
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Boolean answer) {
+        isAnswer = answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 
     public void setId(Long id) {
         this.id = id;

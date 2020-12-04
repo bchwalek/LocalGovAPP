@@ -27,11 +27,11 @@
 
         <div class="container-lg pt-3">
             <div class="container-fluid pb-2 text-center">
-                <h2>Tworzenie profilu Radnego!</h2>
+                <h2>Edytuj profil Radnego!</h2>
             </div>
 
-            <form th:object="${councilman}" th:action="@{/addcouncilman}" method="post">
-
+            <form th:object="${councilman}" th:action="@{/updatecouncilman}" method="post">
+                mysql.session
                 <input type="hidden" th:value="*{id}" id="id" name="id"/>
                 <!--Imie i nazwisko-->
                 <div class="row">
@@ -47,9 +47,9 @@
                     <input type="email" th:value="*{email}" class="form-control" id="email" name="email" placeholder="Email"/>
                 </div>
 
-                <div class="form-group">
-                    <input type="password" th:value="*{password}" class="form-control" id="password" name="password" placeholder="Hasło"/>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <input type="password" th:value="*{password}" class="form-control" id="password" name="password" placeholder="Hasło"/>-->
+<!--                </div>-->
                 <!--textarea-->
                 <div class="form-group">
                     <textarea class="form-control" type="text" id="description" name="description" th:field="*{description}" rows="3" placeholder="Dodaj Opis Działalności Radnego"></textarea>

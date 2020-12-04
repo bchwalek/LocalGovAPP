@@ -17,6 +17,18 @@
 </head>
 
 <body>
+<!--<ul class="list-group pt-lg-5">-->
+<!--    <li class="list-group-item active text-center" th:text="|INTERPELACJA|"></li>-->
+<!--    <li class="list-group-item" th:text="|TEMAT:|"></li>-->
+<!--    <li class="list-group-item text-center font-weight-bold" th:text="*{title}"></li>-->
+<!--    <li class="list-group-item" th:text="|TREŚĆ:|"></li>-->
+<!--    <li class="list-group-item text-center font-weight-bold"  th:text="*{description}"></li>-->
+<!--    <li class="list-group-item blockquote-footer" th:text="|Zgłosił: *{councilmanFN} *{councilmanLN} w dniu *{#dates.format(date, 'dd-MM-yyyy')}|"></li>-->
+<!--    <li class="list-group-item blockquote-footer" th:text="*{answer}"></li>-->
+<!--</ul>-->
+
+
+
 <h3 th:text="'Interpelacja nr ' +${id}+'/'+${date}"></h3>
 <table class="border-dark">
     <tbody class="">
