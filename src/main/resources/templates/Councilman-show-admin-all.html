@@ -42,8 +42,10 @@
                            class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                         <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}"
                            class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
-                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}"
-                           class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                        <a th:href="@{/deactivate/{id}/(id=${councilman.getId()})}"
+                           class="btn btn-danger rounded-0 text-light m-1" th:if="*{councilman.isDelete==false}">Deaktywuj</a>
+                        <a th:href="@{/activate/{id}/(id=${councilman.getId()})}"
+                           class="btn btn-danger rounded-0 text-light m-1" th:if="*{councilman.isDelete==true}">Aktywuj</a>
                     </td>
                 </tr>
                 </tbody>

@@ -30,7 +30,7 @@ public class LoginUserDetailsService implements UserDetailsService {
         } else {
             Councilman councilman = councilmanService.getByEmail(s);
             if (councilman != null) {
-                return new LoginUserDetails(councilman.getEmail(), councilman.getPassword(), councilman.getRole());
+                return new LoginUserDetails(councilman.getEmail(), councilman.getPassword(), councilman.getRole(), councilman.getIsDelete());
             }
         } throw new UsernameNotFoundException("Nie znaleziono użytkownika!");
     }

@@ -54,7 +54,7 @@ public class CouncilmanController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/admin/showallcouncilman")
     public String showallCouncilmanAdmin(Model model) {
-        model.addAttribute("councilmans", councilmanService.getCouncilmanIsDelete(false));
+        model.addAttribute("councilmans", councilmanService.getAllCouncilman());
         return "Councilman-show-admin-all";
     }
 
@@ -68,10 +68,20 @@ public class CouncilmanController {
 
     //referencja do klucza interpelacje
     @Secured("ROLE_ADMIN")
-    @GetMapping("/deletecouncilman/{id}")
-    public String deletecouncilman(@PathVariable Long id) {
+    @GetMapping("/deactivate/{id}")
+    public String deactivate(@PathVariable Long id) {
         Councilman councilman = councilmanService.getCouncilman(id).get();
         councilman.setIsDelete(true);
+        councilmanService.addCoucilman(councilman);
+
+        return "redirect:/admin/showallcouncilman";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/activate/{id}")
+    public String activate(@PathVariable Long id) {
+        Councilman councilman = councilmanService.getCouncilman(id).get();
+        councilman.setIsDelete(false);
         councilmanService.addCoucilman(councilman);
 
         return "redirect:/admin/showallcouncilman";

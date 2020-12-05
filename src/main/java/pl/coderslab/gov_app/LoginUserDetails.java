@@ -14,6 +14,7 @@ public class LoginUserDetails implements UserDetails {
 
     private String email;
     private String password;
+    private Boolean isDelete;
     private Role role;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -24,6 +25,16 @@ public class LoginUserDetails implements UserDetails {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
         this.authorities = grantedAuthorities;
+    }
+
+    public LoginUserDetails(String email, String password, Role role, Boolean isDelete) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
+        this.authorities = grantedAuthorities;
+        this.isDelete = isDelete;
     }
 
     @Override
@@ -58,6 +69,10 @@ public class LoginUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+
+        if (isDelete != null) {
+            return !isDelete;
+        }
         return true;
     }
 }
