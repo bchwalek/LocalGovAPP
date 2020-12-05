@@ -19,6 +19,7 @@ import pl.coderslab.gov_app.councilman.CouncilmanService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +49,9 @@ public class InterpellationController {
         context.setVariable("title", interpellation.getTitle());
         context.setVariable("id", interpellation.id);
         context.setVariable("description", interpellation.getDescription());
-        context.setVariable("date", interpellation.getDate());
+
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
+        context.setVariable("date", formatDate.format(interpellation.getDate()));
         context.setVariable("councilmanFN", interpellation.getCouncilman().getFirstName());
         context.setVariable("councilmanLN", interpellation.getCouncilman().getLastName());
 
