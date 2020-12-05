@@ -68,8 +68,8 @@
                             <td class="row d-flex align-items-center justify-content-center flex-wrap">
                                 <a th:href="@{/interpellation/{id}/(id=${interpellation.getId()})}"
                                    class="btn btn-info rounded-0 text-light m-1">Generuj PDF</a>
-                                <!--                        <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>-->
-                                <!--                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>-->
+                                <a th:href="@{/deleteint/{id}/(id=${interpellation.getId()})}"
+                                   class="btn btn-danger rounded-0 text-light m-1" th:if="*{interpellation.councilman.email==#authentication.getName()}">USUŃ</a>
                             </td>
                         </tr>
                         </tbody>

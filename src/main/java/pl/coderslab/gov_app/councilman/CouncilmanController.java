@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.gov_app.interpellation.Interpellation;
 import pl.coderslab.gov_app.interpellation.InterpellationService;
 import pl.coderslab.gov_app.role.RoleService;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -55,6 +57,7 @@ public class CouncilmanController {
     @GetMapping("/admin/showallcouncilman")
     public String showallCouncilmanAdmin(Model model) {
         model.addAttribute("councilmans", councilmanService.getAllCouncilman());
+        model.addAttribute("warning", "Kliknięcie USUŃ - trwale usuwa użytkownia wraz z powiązanymi danymi");
         return "Councilman-show-admin-all";
     }
 
@@ -84,6 +87,24 @@ public class CouncilmanController {
         councilman.setIsDelete(false);
         councilmanService.addCoucilman(councilman);
 
+        return "redirect:/admin/showallcouncilman";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+
+
+        List<Interpellation> interpellations = interpellationService.getAllInterpellation();
+        Councilman councilman =councilmanService.getCouncilman(id).get();
+
+        List<Interpellation>  interpellations2 = interpellations.stream().filter(interpellation -> interpellation.getCouncilman()==councilman).collect(Collectors.toList());
+
+         for (Interpellation interpellation: interpellations2){
+           interpellationService.deleteInterpellation(interpellation.getId());
+         }
+         int count =interpellations2.size();
+        councilmanService.deleteCouncilman(id);
         return "redirect:/admin/showallcouncilman";
     }
 

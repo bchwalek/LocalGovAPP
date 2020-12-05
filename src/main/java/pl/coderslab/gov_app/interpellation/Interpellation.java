@@ -71,7 +71,7 @@ public class Interpellation {
         return formatDate.format(date);
     }
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     private Councilman councilman;
 
     public void setCouncilman(Councilman councilman) {

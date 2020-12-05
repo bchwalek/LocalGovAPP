@@ -132,5 +132,11 @@ public class InterpellationController {
         return "redirect:/showint";
     }
 
+    @Secured("ROLE_COUNCILMAN")
+    @GetMapping("/deleteint/{id}")
+    public String deleteInterpellation(@PathVariable("id") Long id){
+        interpellationService.deleteInterpellation(id);
+        return "redirect:/showinterpellation";
+    }
 
 }
