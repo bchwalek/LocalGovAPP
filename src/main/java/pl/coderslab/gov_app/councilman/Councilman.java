@@ -1,35 +1,44 @@
 package pl.coderslab.gov_app.councilman;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.hibernate.validator.constraints.UniqueElements;
+import pl.coderslab.gov_app.LoginUserDetails;
 import pl.coderslab.gov_app.role.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Collection;
-import java.util.Collections;
+
 
 @Entity
-public class Councilman implements UserDetails {
+public class Councilman {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Imię nie może być puste")
     private String firstName;
 
-    @NotBlank(message = "Imię nie może być puste")
+    @NotBlank(message = "Nazwisko nie może być puste")
     private String lastName;
-    private String committee;
 
+    @NotBlank(message = "Dodaj opis!")
     private String description;
 
-    @Email
+    @Email(message = "Nieprawidlowy email")
+    @NotBlank(message = "Podaj email")
     private String email;
 
-//    @Size(min=2, max=10, message = "Hasło musi mieć conajmniej 2 i maksymalnie 10 znaków")
+    private Boolean isDelete;
+
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    //    @Size(min=2, max=10, message = "Hasło musi mieć conajmniej 2 i maksymalnie 10 znaków")
     private String password;
 
     public void setId(Long id) {
@@ -42,10 +51,6 @@ public class Councilman implements UserDetails {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setCommittee(String committee) {
-        this.committee = committee;
     }
 
     public void setDescription(String description) {
@@ -72,10 +77,6 @@ public class Councilman implements UserDetails {
         return lastName;
     }
 
-    public String getCommittee() {
-        return committee;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -84,42 +85,13 @@ public class Councilman implements UserDetails {
         return email;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
-    }
-
     public String getPassword() {
         return password;
     }
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
+    @NotNull(message = "Wybierz Poziom Dostępu")
     @OneToOne
-    Role role;
+    private Role role;
 
     public void setRole(Role role) {
         this.role = role;

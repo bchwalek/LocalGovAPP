@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.coderslab.gov_app.councilman.CouncilmanService;
-import pl.coderslab.gov_app.superadmin.SuperAdminService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
@@ -20,18 +18,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    private CouncilmanService councilmanService;
-//    private SuperAdminService superAdminService;
+    private LoginUserDetailsService loginUserDetailsService;
 
-    public WebSecurityConfig(CouncilmanService councilmanService) {
-        this.councilmanService = councilmanService;
-//        this.superAdminService = superAdminService;
+    public WebSecurityConfig(LoginUserDetailsService loginUserDetailsService) {
+        this.loginUserDetailsService = loginUserDetailsService;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(councilmanService);
-//        auth.userDetailsService(superAdminService);
+        auth.userDetailsService(loginUserDetailsService);
+
 
     }
 
@@ -44,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
+                .and().exceptionHandling().accessDeniedPage("/noaccess")
                 .and().logout().logoutSuccessUrl("/");
     }
 }

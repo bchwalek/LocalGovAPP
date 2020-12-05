@@ -17,66 +17,69 @@
         <div th:replace="fragments :: navbar"></div>
 
 
-
-            <div class="container-fluid">
-                            <form>
-                                <div class="row mt-5 align-items-center">
-                                    <div class="col-md-3 text-center mb-5">
-                                        <div class="avatar avatar-xl">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-7">
-                                                <h4 class="mb-1" th:text="|${councilman.getFirstName()} ${councilman.getLastName()}|"></h4>
-                                                <p class="small mb-3"><span class="badge badge-dark" th:text="${councilman.getEmail()}"></span></p>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-md-7">
-                                                <p class="text-muted" th:text="${councilman.getDescription()}"></p>
-                                            </div>
-                                            <div class="col">
-                                                <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
-                                                <p class="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>
-                                                <p class="small mb-0 text-muted">(537) 315-1481</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                <table class="table">
-                                    <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Temat</th>
-                                        <th scope="col">Treść</th>
-                                        <th scope="col">Data złożenia</th>
-                                        <th scope="col">Odpowiedź</th>
-                                        <th scope="col" class="text-center"><a th:href="@{/addinterpellation}" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj Interpelację</a></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="interpellation: ${CouncInterp}">
-                                        <th scope="row" th:text="${interpellation.title}"></th>
-                                        <td th:text="${interpellation.description}"></td>
-                                        <td th:text="${#dates.format(interpellation.date, 'dd-MM-yyyy')}"></td>
-                                        <td th:text="${interpellation.answer}" th:if="${interpellation.answer!=null}"></td>
-                                        <td th:text="|BRAK|" th:if="${interpellation.answer==null}"></td>
-                                        <td class="row d-flex align-items-center justify-content-center flex-wrap">
-                                            <a th:href="@{/interpellation/{id}/(id=${interpellation.getId()})}" class="btn btn-info rounded-0 text-light m-1">Generuj PDF</a>
-                                            <!--                        <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>-->
-                                            <!--                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>-->
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                </div>
-                                <a th:href="@{/showallcouncilman}" class="btn btn-info rounded text-light m-1">Powrót</a>
-                            </form>
+        <div class="container-fluid">
+            <form>
+                <div class="row mt-5 align-items-center">
+                    <div class="col-md-3 text-center mb-5">
+                        <div class="avatar avatar-xl">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."
+                                 class="avatar-img rounded-circle"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row align-items-center">
+                            <div class="col-md-7">
+                                <h4 class="mb-1"
+                                    th:text="|${councilman.getFirstName()} ${councilman.getLastName()}|"></h4>
+                                <p class="small mb-3"><span class="badge badge-dark"
+                                                            th:text="${councilman.getEmail()}"></span></p>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-7">
+                                <p class="text-muted" th:text="${councilman.getDescription()}"></p>
+                            </div>
+                            <div class="col">
+                                <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
+                                <p class="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>
+                                <p class="small mb-0 text-muted">(537) 315-1481</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Temat</th>
+                            <th scope="col">Treść</th>
+                            <th scope="col">Data złożenia</th>
+                            <th scope="col">Odpowiedź</th>
+                            <th scope="col" class="text-center"><a th:href="@{/addinterpellation}" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj Interpelację</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="interpellation: ${CouncInterp}">
+                            <th scope="row" th:text="${interpellation.title}"></th>
+                            <td th:text="${interpellation.description}"></td>
+                            <td th:text="${#dates.format(interpellation.date, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${interpellation.answer}" th:if="${interpellation.answer!=null}"></td>
+                            <td th:text="|BRAK|" th:if="${interpellation.answer==null}"></td>
+                            <td class="row d-flex align-items-center justify-content-center flex-wrap">
+                                <a th:href="@{/interpellation/{id}/(id=${interpellation.getId()})}"
+                                   class="btn btn-info rounded-0 text-light m-1">Generuj PDF</a>
+                                <!--                        <a th:href="@{/updatecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>-->
+                                <!--                        <a th:href="@{/deletecouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>-->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a th:href="@{/showallcouncilman}" class="btn btn-info rounded text-light m-1">Powrót</a>
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 
 <div th:replace="fragments :: jsscript"></div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments :: sidebar"></div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+
+            <form th:action="@{/addelem}" th:method="post">
+
+                <ul class="list-group pt-lg-5">
+                    <li class="list-group-item active text-center" th:text="|DODAJ ELEMENT PORZĄDKU OBRAD|"></li>
+
+                    <textarea class="form-control" id="name" name="name" th:value="*{name}" rows="3"></textarea>
+                </ul>
+
+                <input type="submit" class="btn btn-success" value="Dodaj">
+            </form>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>

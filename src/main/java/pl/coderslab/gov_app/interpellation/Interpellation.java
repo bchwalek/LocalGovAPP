@@ -1,17 +1,21 @@
 package pl.coderslab.gov_app.interpellation;
 
 import pl.coderslab.gov_app.councilman.Councilman;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 public class Interpellation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @NotBlank(message = "Uzupełnij tytuł!")
     private String title;
+    @NotBlank(message = "Uzupełnij treść!")
     private String description;
     private Date date;
     private String answer;
@@ -61,9 +65,9 @@ public class Interpellation {
         return date;
     }
 
-    public String date(){
+    public String date() {
         Date date = new Date();
-        SimpleDateFormat formatDate = new SimpleDateFormat ("yyyy-MM-dd");
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
         return formatDate.format(date);
     }
 

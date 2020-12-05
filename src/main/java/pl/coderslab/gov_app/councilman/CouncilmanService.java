@@ -1,13 +1,6 @@
 package pl.coderslab.gov_app.councilman;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +8,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class CouncilmanService implements UserDetailsService {
+public class CouncilmanService {
 
     private CouncilmanRepository councilmanRepository;
 
@@ -24,31 +17,33 @@ public class CouncilmanService implements UserDetailsService {
         this.councilmanRepository = councilmanRepository;
     }
 
-    public List<Councilman> getAllCouncilman(){
+    public List<Councilman> getAllCouncilman() {
         return councilmanRepository.findAll();
     }
 
-    public Optional<Councilman> getCouncilman(Long id){
+    public List<Councilman> getCouncilmanIsDelete (Boolean delete) {return councilmanRepository.isDelete(delete);}
+
+    public Optional<Councilman> getCouncilman(Long id) {
         return councilmanRepository.findById(id);
     }
 
-    public void addCoucilman(Councilman councilman){
+    public void addCoucilman(Councilman councilman) {
         councilmanRepository.save(councilman);
     }
 
-    public Councilman getByname (String name) {
+    public Councilman getByname(String name) {
         return councilmanRepository.findByEmail(name);
     }
 
-    public void deleteCouncilman (Long id){
+    public void deleteCouncilman(Long id) {
         councilmanRepository.deleteById(id);
     }
 
-    public void updateCouncilman(Councilman councilman){
+    public void updateCouncilman(Councilman councilman) {
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return  councilmanRepository.findByEmail(s);
+    public Councilman getByEmail(String email) {
+        return councilmanRepository.findByEmail(email);
     }
+
 }

@@ -31,12 +31,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="councilman: ${councilmans}">
-                    <th scope="row" th:text="${councilman.id}"></th>
+                <tr th:each="councilman, stat: ${councilmans}">
+                    <th scope="row" th:text="${stat.index+1}"></th>
                     <td th:text="${councilman.firstName}"></td>
                     <td th:text="${councilman.lastName}"></td>
                     <td class="row d-flex align-items-center justify-content-center flex-wrap">
-                        <a th:href="@{/showcouncilman/{id}/(id=${councilman.getId()})}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                        <a th:href="@{/showcouncilman/{id}/(id=${councilman.getId()})}"
+                           class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                     </td>
                 </tr>
                 </tbody>

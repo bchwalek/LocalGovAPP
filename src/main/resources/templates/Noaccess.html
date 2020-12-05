@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: header"></head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+
+    <div th:replace="fragments :: sidebar"></div>
+
+
+
+    <div id="page-content-wrapper">
+
+        <div th:replace="fragments :: navbar"></div>
+
+        <div class="container-lg pt-3">
+        <div class="card">
+            <div class="card-header text-danger" th:text="|BRAK DOSTĘPU|">
+
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" th:text="|Nie posiadasz uprawnień do przeglądania tego zasobu.|"></p>
+                <img th:src="@{/images/noaccess3.jpg}"/>
+                <a th:href="@{/login}" class="btn btn-primary">ZALOGUJ</a>
+                <a th:href="@{/}" class="btn btn-primary">STRONA GŁÓWNA</a>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div th:replace="fragments :: jsscript"></div>
+
+</body>
+
+
+</html>

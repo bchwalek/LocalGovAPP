@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class SuperAdminService implements UserDetailsService {
+public class SuperAdminService {
 
 
     private SuperAdminRepository superAdminRepository;
@@ -42,8 +42,9 @@ public class SuperAdminService implements UserDetailsService {
 
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return superAdminRepository.findByEmail(s);
+    public SuperAdmin findByEmail (String email){
+        return superAdminRepository.findByEmail(email);
     }
+
+
 }
