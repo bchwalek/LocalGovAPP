@@ -10,7 +10,7 @@ import java.util.Optional;
 @Transactional
 @AllArgsConstructor
 public class LegalService {
-    private LegalRepository legalRepository;
+    private final LegalRepository legalRepository;
 
     public List<Legal> getAllLegal(){
         return legalRepository.findAll();

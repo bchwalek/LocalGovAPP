@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class CouncilmanService {
 
-    private CouncilmanRepository councilmanRepository;
+    private final CouncilmanRepository councilmanRepository;
 
 
     public CouncilmanService(CouncilmanRepository councilmanRepository) {

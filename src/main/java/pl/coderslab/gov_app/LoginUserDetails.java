@@ -1,5 +1,4 @@
 package pl.coderslab.gov_app;
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,11 +11,11 @@ import java.util.List;
 
 public class LoginUserDetails implements UserDetails {
 
-    private String email;
-    private String password;
+    private final String email;
+    private final String password;
     private Boolean isDelete;
-    private Role role;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Role role;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public LoginUserDetails(String email, String password, Role role) {
         this.email = email;

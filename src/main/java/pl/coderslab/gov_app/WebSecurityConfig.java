@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    private LoginUserDetailsService loginUserDetailsService;
+    private final LoginUserDetailsService loginUserDetailsService;
 
     public WebSecurityConfig(LoginUserDetailsService loginUserDetailsService) {
         this.loginUserDetailsService = loginUserDetailsService;

@@ -1,12 +1,10 @@
 package pl.coderslab.gov_app;
 import com.lowagie.text.DocumentException;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.xhtmlrenderer.extend.FontResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.File;

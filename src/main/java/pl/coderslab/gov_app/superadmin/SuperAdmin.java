@@ -1,13 +1,8 @@
 package pl.coderslab.gov_app.superadmin;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import pl.coderslab.gov_app.role.Role;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity
 public class SuperAdmin {

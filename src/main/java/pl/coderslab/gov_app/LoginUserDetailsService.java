@@ -1,8 +1,6 @@
 package pl.coderslab.gov_app;
 
-import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

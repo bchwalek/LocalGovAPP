@@ -1,13 +1,10 @@
 package pl.coderslab.gov_app.councilman;
 
-import org.hibernate.validator.constraints.UniqueElements;
-import pl.coderslab.gov_app.LoginUserDetails;
-import pl.coderslab.gov_app.interpellation.Interpellation;
+
 import pl.coderslab.gov_app.role.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.List;
 
 
 @Entity
@@ -93,7 +90,7 @@ public class Councilman {
 
     @NotNull(message = "Wybierz Poziom Dostępu")
 
-    @OneToOne (cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Role role;
 
     public void setRole(Role role) {

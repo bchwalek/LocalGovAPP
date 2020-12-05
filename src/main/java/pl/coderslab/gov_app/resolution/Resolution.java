@@ -4,7 +4,6 @@ import pl.coderslab.gov_app.sessionorder.SessionOrder;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 public class Resolution {

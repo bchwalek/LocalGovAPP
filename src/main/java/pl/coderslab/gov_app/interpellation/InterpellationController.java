@@ -55,10 +55,6 @@ public class InterpellationController {
         context.setVariable("councilmanFN", interpellation.getCouncilman().getFirstName());
         context.setVariable("councilmanLN", interpellation.getCouncilman().getLastName());
 
-//        if(!interpellation.getAnswer().isEmpty()){
-//            context.setVariable("answer", interpellation.getAnswer());
-//        } else context.setVariable("answer", "BRAK");
-
         PDFCreate pdfCreate = new PDFCreate();
         String html = pdfCreate.parseThymeleafTemplate("Interpellation-pdf-create", context);
         pdfCreate.generatePdfFromHtml(html, "Interpelacja nr " + interpellation.getId());

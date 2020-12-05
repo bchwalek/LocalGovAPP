@@ -55,7 +55,7 @@
                 <!--textarea-->
                 <div class="form-group">
                     <textarea class="form-control" type="text" id="description" name="description"
-                              th:value="*{description}" rows="3"
+                              th:field="*{description}" rows="3"
                               placeholder="Dodaj Opis Działalności Radnego"></textarea>
                     <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
                     <td>

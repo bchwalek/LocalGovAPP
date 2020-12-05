@@ -1,7 +1,6 @@
 package pl.coderslab.gov_app.sessionorder;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.NonNull;
 import pl.coderslab.gov_app.legal.Legal;
 import pl.coderslab.gov_app.sessionelem.Sessionelem;
 

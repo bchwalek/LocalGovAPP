@@ -2,7 +2,6 @@ package pl.coderslab.gov_app.sessionelem;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.coderslab.gov_app.councilman.Councilman;
 
 import javax.transaction.Transactional;
 import java.util.List;

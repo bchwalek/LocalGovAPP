@@ -2,7 +2,6 @@ package pl.coderslab.gov_app.role;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.coderslab.gov_app.interpellation.Interpellation;
 
 
 import javax.transaction.Transactional;
